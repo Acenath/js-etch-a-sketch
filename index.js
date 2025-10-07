@@ -20,9 +20,19 @@ function hover_effect(){
 
     grids.forEach((grid) => {
         grid.addEventListener("mouseenter", () => {
-            grid.style.backgroundColor = "black";
-        })
-    });
+            // Random rgb values for each hovering on non hovered tiles
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            grid.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            // Opacity increment
+            const opacity = parseFloat(grid.style.opacity);
+            console.log(opacity);
+            if(opacity < 1)
+                grid.style.opacity = (opacity + 0.1).toString();
+        });
+        
+      });
 }
 
 
@@ -43,7 +53,7 @@ function create_grids(container, n_grid) {
         for (let j = 0; j < n_grid; j++) {
             const div_col = document.createElement("div");
             div_col.classList.add("col");
-            div_col.style.cssText = "flex: 1; "
+            div_col.style.cssText = "flex: 1; opacity: 0;"
             //  + "border 1px solid purple;" 
             div_row.appendChild(div_col);
         }
